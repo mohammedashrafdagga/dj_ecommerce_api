@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Inter Apps
     "ecommerce.apps.accounts",
+    "ecommerce.apps.products",
 ]
 
 MIDDLEWARE = [
