@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     # External App
     "rest_framework",
     "rest_framework_simplejwt",
+    "drf_spectacular",
     # Inter Apps
     "ecommerce.apps.accounts",
 ]
@@ -60,17 +61,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "ecommerce.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -124,6 +114,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 
@@ -138,4 +129,12 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
     "USER_ID_FIELD": "id",
     "USER_ID_CLAIM": "user_id",
+}
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": " E-commerce API ",
+    "DESCRIPTION": "Building (Onside) ecommerce api using Django and Django Rest Framework",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
 }
