@@ -1,3 +1,5 @@
+import os
+
 from decouple import config
 
 from .base import *
@@ -14,3 +16,7 @@ DATABASES = {
         "PORT": config("DATABASE_PORT_LOCAL", default="5432", cast=int),
     }
 }
+
+# Media Local Settings
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
