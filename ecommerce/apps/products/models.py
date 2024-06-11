@@ -35,7 +35,9 @@ class Product(models.Model):
     content = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField(default=0)
-    main_image = models.ImageField(upload_to="products/")
+    main_image = models.ImageField(
+        upload_to="products/", default="products/default.png"
+    )
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, related_name="products"
     )
@@ -52,7 +54,9 @@ class ProductImage(models.Model):
     product = models.ForeignKey(
         Product, related_name="images", on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to="product_images/")
+    image = models.ImageField(
+        upload_to="product_images/", default="product_images/default.png"
+    )
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
