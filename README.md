@@ -8,10 +8,11 @@ This sprint includes features for user registration, login using JWT, profile ed
 
 ### Endpoints:
 
-- `/api/auth/register/` - Register a new user.
-- `/api/auth/login/` - Login and obtain JWT tokens.
-- `/api/auth/edit-profile/` - Edit user profile information.
-- `/api/auth/change-password/` - Change user password.
+- `/api/account/register/` - Register a new user.
+- `/api/account/login/` - Login and obtain JWT tokens.
+- `/api/account/detail/` - Get user profile information.
+- `/api/account/edit/` - Edit user profile information.
+- `/api/account/change-password/` - Change user password.
 
 ## Product Sprint
 
