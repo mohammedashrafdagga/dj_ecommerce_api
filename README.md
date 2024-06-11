@@ -4,52 +4,18 @@ This project is a Django-based e-commerce API using Django Rest Framework. It in
 
 ## Authentication Sprint
 
-### Features:
-
-1. **User Registration**:
-
-   - Users can register with their name, email, username (derived from email), password, and confirm password.
-   - The registration process includes email validation and password confirmation.
-
-2. **User Login**:
-
-   - Users can log in using their email and password.
-   - JWT (JSON Web Tokens) is used for authentication, allowing secure and stateless authentication.
-
-3. **Edit User Information**:
-
-   - After registration, users can complete their profile by adding more details such as date of birth, gender, image, address, and phone number.
-   - A dedicated view allows users to update their profile information.
-
-4. **Change Password**:
-   - Users can change their password using a dedicated view that requires the old password and the new password.
+This sprint includes features for user registration, login using JWT, profile editing, and password changing. Users can register with their name, email, username (derived from email), password, and confirm password. After registration, users can complete their profile with additional details and can change their password through a dedicated view.
 
 ### Endpoints:
 
 - `/api/auth/register/` - Register a new user.
 - `/api/auth/login/` - Login and obtain JWT tokens.
-- `/api/auth/login/refresh` - Refresh Access Token and obtain JWT tokens.
 - `/api/auth/edit-profile/` - Edit user profile information.
 - `/api/auth/change-password/` - Change user password.
 
 ## Product Sprint
 
-### Features:
-
-1. **Categories and Brands**:
-
-   - Categories and brands can be created and managed via the admin panel.
-   - Each brand can belong to multiple categories and each category can have multiple brands (many-to-many relationship).
-   - Categories and brands are slugified for URL-friendly representation.
-
-2. **Products**:
-
-   - Products can be added with attributes such as name, description, price, stock, category, brand, and a main image.
-   - Products can have multiple images.
-
-3. **Product Filtering**:
-   - Users can view all products and filter them based on category and brand.
-   - The product list can be searched by product name and description.
+This sprint includes features for managing categories, brands, and products. Categories and brands are created via the admin panel and are related in a many-to-many relationship. Products can be added with attributes like name, description, price, stock, category, brand, main image, and multiple additional images. Users can view all products and filter them by category or brand.
 
 ### Endpoints:
 
@@ -57,14 +23,9 @@ This project is a Django-based e-commerce API using Django Rest Framework. It in
 - `/api/brands/` - List all brands.
 - `/api/products/` - List all products and filter by category and brand.
 
-### Admin Configuration:
+### Product Entity Diagrams and Product Features Explain:
 
-- Slug fields for categories, brands, and products are automatically populated based on their names.
-- Products can be managed along with their images directly from the admin panel.
-
-### Image of Product Model:
-
-![Product Model Diagram](documents/images/product_entity.png)
+![Product Entity Diagram](documents/images/product_entity.png)
 
 ## Setup Instructions
 
@@ -86,27 +47,37 @@ This project is a Django-based e-commerce API using Django Rest Framework. It in
    pip install -r requirements.txt
    ```
 
-4. **Run migrations**:
+4. **Create the `.env` file**:
+
+   ```sh
+   touch .env
+   ```
+
+   Add the secert_key, debug, and database settings into the `.env` file:
+
+   ```env
+   SECRET_KEY=your_secret_key_here
+   DEBUG=your_debug_status
+   and database settings here
+   ```
+
+5. **Run migrations**:
 
    ```sh
    python manage.py makemigrations
    python manage.py migrate
    ```
 
-5. **Create a superuser**:
+6. **Create a superuser**:
 
    ```sh
    python manage.py createsuperuser
    ```
 
-6. **Run the development server**:
+7. **Run the development server**:
    ```sh
    python manage.py runserver
    ```
-
-## Contributing
-
-We welcome contributions! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
 
 ## License
 
