@@ -2,7 +2,7 @@
 
 This project is a Django-based e-commerce API using Django Rest Framework. It includes functionalities for user authentication and product management.
 
-## Authentication Sprint
+## Authentication Section
 
 This sprint includes features for user registration, login using JWT, profile editing, and password changing. Users can register with their name, email, username (derived from email), password, and confirm password. After registration, users can complete their profile with additional details and can change their password through a dedicated view.
 
@@ -14,7 +14,7 @@ This sprint includes features for user registration, login using JWT, profile ed
 - `/api/account/edit/` - Edit user profile information.
 - `/api/account/change-password/` - Change user password.
 
-## Product Sprint
+## Product Section
 
 This sprint includes features for managing categories, brands, and products. Categories and brands are created via the admin panel and are related in a many-to-many relationship. Products can be added with attributes like name, description, price, stock, category, brand, main image, and multiple additional images. Users can view all products and filter them by category or brand.
 
