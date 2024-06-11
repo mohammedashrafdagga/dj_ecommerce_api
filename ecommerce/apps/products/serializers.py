@@ -1,5 +1,6 @@
-from ecommerce.apps.products.models import Brand, Category, Product, ProductImage
 from rest_framework import serializers
+
+from .models import Brand, Category, Product, ProductImage
 
 
 # for category serializer
@@ -33,10 +34,9 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
-            "id",
             "name",
             "slug",
-            "description",
+            "content",
             "price",
             "stock",
             "category",
