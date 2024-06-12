@@ -14,33 +14,6 @@ paths:
       responses:
         '200':
           description: No response body
-  /api/accounts/create-account/:
-    post:
-      operationId: api_accounts_create_account_create
-      description: Allow to user to create a new account
-      tags:
-      - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAccount'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/CreateAccount'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/CreateAccount'
-        required: true
-      security:
-      - {}
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CreateAccount'
-          description: ''
   /api/accounts/detail/:
     get:
       operationId: api_accounts_detail_retrieve
@@ -55,6 +28,57 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Account'
+          description: ''
+  /api/accounts/edit/:
+    put:
+      operationId: api_accounts_edit_update
+      description: Update User Information
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateAccount'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAccount'
+          description: ''
+    patch:
+      operationId: api_accounts_edit_partial_update
+      description: Update User Information
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateAccount'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAccount'
           description: ''
   /api/accounts/login/:
     post:
@@ -110,48 +134,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenRefresh'
           description: ''
-  /api/accounts/update/:
-    put:
-      operationId: api_accounts_update_update
-      description: Update User Information
+  /api/accounts/register/:
+    post:
+      operationId: api_accounts_register_create
+      description: Allow to user to create a new account
       tags:
       - api
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateAccount'
+              $ref: '#/components/schemas/CreateAccount'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/UpdateAccount'
+              $ref: '#/components/schemas/CreateAccount'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/UpdateAccount'
+              $ref: '#/components/schemas/CreateAccount'
+        required: true
       security:
-      - jwtAuth: []
+      - {}
       responses:
-        '200':
+        '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateAccount'
+                $ref: '#/components/schemas/CreateAccount'
           description: ''
-    patch:
-      operationId: api_accounts_update_partial_update
-      description: Update User Information
+  /api/orders/:
+    get:
+      operationId: api_orders_list
       tags:
       - api
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchedUpdateAccount'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedUpdateAccount'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedUpdateAccount'
       security:
       - jwtAuth: []
       responses:
@@ -159,7 +173,121 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateAccount'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: ''
+  /api/orders/{id}/:
+    get:
+      operationId: api_orders_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/orders/create/:
+    post:
+      operationId: api_orders_create_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderCreate'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderCreate'
+          description: ''
+  /api/products/:
+    get:
+      operationId: api_products_list
+      parameters:
+      - in: query
+        name: brand__slug
+        schema:
+          type: string
+      - in: query
+        name: category__slug
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+          description: ''
+  /api/products/brands/:
+    get:
+      operationId: api_products_brands_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brand'
+          description: ''
+  /api/products/categories/:
+    get:
+      operationId: api_products_categories_list
+      tags:
+      - api
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
           description: ''
 components:
   schemas:
@@ -195,6 +323,38 @@ components:
       required:
       - email
       - username
+    Brand:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+          nullable: true
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+          readOnly: true
+      required:
+      - categories
+      - name
+    Category:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+          pattern: ^[-a-zA-Z0-9_]+$
+        content:
+          type: string
+          nullable: true
+      required:
+      - name
     CreateAccount:
       type: object
       properties:
@@ -216,6 +376,74 @@ components:
       - confirm_password
       - email
       - password
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        owner:
+          type: integer
+          readOnly: true
+        order_date:
+          type: string
+          format: date-time
+          readOnly: true
+        total_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        total_quantity:
+          type: integer
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/StatusEnum'
+          readOnly: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+          readOnly: true
+      required:
+      - id
+      - items
+      - order_date
+      - owner
+      - status
+      - total_price
+      - total_quantity
+    OrderCreate:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+          writeOnly: true
+      required:
+      - items
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        product:
+          $ref: '#/components/schemas/Product'
+        quantity:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        total_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+      required:
+      - id
+      - product
     PatchedUpdateAccount:
       type: object
       properties:
@@ -238,6 +466,69 @@ components:
         address:
           type: string
           nullable: true
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        stock:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        category:
+          allOf:
+          - $ref: '#/components/schemas/Category'
+          readOnly: true
+        brand:
+          allOf:
+          - $ref: '#/components/schemas/Brand'
+          readOnly: true
+        main_image:
+          type: string
+          format: uri
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductImage'
+          readOnly: true
+      required:
+      - brand
+      - category
+      - content
+      - images
+      - name
+      - price
+    ProductImage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        image:
+          type: string
+          format: uri
+      required:
+      - id
+    StatusEnum:
+      enum:
+      - Pending
+      - Completed
+      - Cancelled
+      type: string
+      description: |-
+        * `Pending` - Pending
+        * `Completed` - Completed
+        * `Cancelled` - Cancelled
     TokenObtainPair:
       type: object
       properties:

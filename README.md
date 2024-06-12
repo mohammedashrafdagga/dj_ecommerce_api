@@ -20,13 +20,27 @@ This sprint includes features for managing categories, brands, and products. Cat
 
 ### Endpoints:
 
-- `/api/categories/` - List all categories.
-- `/api/brands/` - List all brands.
+- `/api/products/categories/` - List all categories.
+- `/api/products/brands/` - List all brands.
 - `/api/products/` - List all products and filter by category and brand.
 
 ### Product Entity Diagrams and Product Features Explain:
 
 ![Product Entity Diagram](documents/images/product_entity.png)
+
+## Order Section
+
+This sprint includes features for allow to user make orders in the application and see what the all orders is create with every order what the item have.
+
+### Endpoints:
+
+- `/api/orders/create` - create new order
+- `/api/orders/` - List all order for user.
+- `/api/order/<int:pk>/` - retrieve information for order have the id.
+
+### Order Entity Diagrams and Order Item Features Explain:
+
+![Orders Entity Diagram](documents/images/Orders.png)
 
 ## Setup Instructions
 
