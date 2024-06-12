@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # Inter Apps
     "ecommerce.apps.accounts",
     "ecommerce.apps.products",
+    "ecommerce.apps.orders",
 ]
 
 MIDDLEWARE = [

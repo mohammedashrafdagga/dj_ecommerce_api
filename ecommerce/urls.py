@@ -9,7 +9,10 @@ urlpatterns = [
     path(
         "api/accounts/", include("ecommerce.apps.accounts.urls", namespace="accounts")
     ),
-    path("api/", include("ecommerce.apps.products.urls", namespace="api-product")),
+    path(
+        "api/products/",
+        include("ecommerce.apps.products.urls", namespace="api-product"),
+    ),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/docs/", SpectacularSwaggerView.as_view(url_name="schema")),
 ]
