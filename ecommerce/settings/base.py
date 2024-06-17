@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "ecommerce.apps.accounts",
     "ecommerce.apps.products",
     "ecommerce.apps.orders",
+    "ecommerce.apps.reviews",
 ]
 
 MIDDLEWARE = [
