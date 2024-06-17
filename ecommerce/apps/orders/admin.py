@@ -10,7 +10,14 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("owner", "order_date", "total_price", "total_quantity", "status")
+    list_display = (
+        "id",
+        "owner",
+        "order_date",
+        "total_price",
+        "total_quantity",
+        "status",
+    )
     list_filter = ("status", "order_date")
     search_fields = ("owner__name", "owner__email")
     inlines = [OrderItemInline]

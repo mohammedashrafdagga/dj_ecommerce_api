@@ -36,11 +36,13 @@ class Review(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
-        return f"{self.created_by} - {self.rating}"
+        return f"{self.order_item.id}:// {self.created_by} - {self.rating}"
 
     # override
     # The Product id is taken from OrderItem
     def save(self, *args, **kwargs) -> None:
-        self.product = self.order_item.product
-        self.created_by = self.order_item.order.owner
+        if not self.product:
+            self.product = self.order_item.product
+        if not self.created_by:
+            self.created_by = self.order_item.order.owner
         return super().save(*args, **kwargs)

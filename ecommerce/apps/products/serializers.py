@@ -1,3 +1,4 @@
+from ecommerce.apps.reviews.serializers import ReviewSerializer
 from rest_framework import serializers
 
 from .models import Brand, Category, Product, ProductImage
@@ -30,6 +31,7 @@ class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     brand = BrandSerializer(read_only=True)
     images = ProductImageSerializer(read_only=True, many=True)
+    reviews = ReviewSerializer(read_only=True, many=True)
 
     class Meta:
         model = Product
@@ -43,4 +45,5 @@ class ProductSerializer(serializers.ModelSerializer):
             "brand",
             "main_image",
             "images",
+            "reviews",
         ]
