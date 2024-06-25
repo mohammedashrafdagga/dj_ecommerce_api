@@ -17,9 +17,13 @@ urlpatterns = [
         "api/orders/",
         include("ecommerce.apps.orders.urls", namespace="api-orders"),
     ),
-     path(
+    path(
         "api/reviews/",
         include("ecommerce.apps.reviews.urls", namespace="api-reviews"),
+    ),
+    path(
+        "api/notifications/",
+        include("ecommerce.apps.notifications.urls", namespace="api-notifications"),
     ),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/docs/", SpectacularSwaggerView.as_view(url_name="schema")),

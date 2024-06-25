@@ -13,7 +13,7 @@ class ReviewAdmin(admin.ModelAdmin):
     )
     list_filter = ("product", "rating")
     search_fields = ("rating", "product__name")
-    readonly_fields = ("product", "created_by", "order_item")
+    readonly_fields = ("product", "created_by")
 
 
 admin.site.register(Review, ReviewAdmin)

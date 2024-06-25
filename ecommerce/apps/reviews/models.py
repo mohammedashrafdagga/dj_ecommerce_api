@@ -41,8 +41,7 @@ class Review(models.Model):
     # override
     # The Product id is taken from OrderItem
     def save(self, *args, **kwargs) -> None:
-        if not self.product:
-            self.product = self.order_item.product
+        self.product = self.order_item.product
         if not self.created_by:
             self.created_by = self.order_item.order.owner
         return super().save(*args, **kwargs)
