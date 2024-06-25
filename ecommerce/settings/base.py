@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "ecommerce.apps.products",
     "ecommerce.apps.orders",
     "ecommerce.apps.reviews",
+    "ecommerce.apps.notifications",
 ]
 
 MIDDLEWARE = [

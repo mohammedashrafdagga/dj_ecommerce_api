@@ -19,7 +19,7 @@ class Order(models.Model):
     )
 
     def __str__(self):
-        return f"Order {self.id} by {self.owner}"
+        return f"Order {self.pk} by {self.owner}"
 
 
 class OrderItem(models.Model):
@@ -43,4 +43,4 @@ class OrderItem(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f"{self.id}// - {self.quantity} x {self.product.name} in Order {self.order.id}"
+        return f"{self.pk}// - {self.quantity} x {self.product.name} in Order {self.order.pk}"
